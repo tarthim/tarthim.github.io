@@ -3,6 +3,9 @@
 <head>
   <title>Is Michelle al weg bij RWS?</title>
   <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap');
+
     body {
       display: flex;
       flex-direction: column;
@@ -11,6 +14,21 @@
       height: 100vh;
       font-size: 48px;
       text-align: center;
+
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    #app {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #countdown {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
     }
 
     #yes {
@@ -19,13 +37,31 @@
 
     #no {
         color: red;
+        text-decoration: underline;
+    }
+
+    #no-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        margin: 20px 0 30px 0;
+    }
+
+    .value-box {
+        width: fit-content;
+        font-weight: 700;
     }
 
   </style>
 </head>
 <body>
-  <div>Is Michelle al weg bij RWS?</div>
-  <div id="countdown"></div>
+  <div id="app">
+    <div>Is Michelle al weg bij RWS?</div>
+    <div id="countdown"></div>
+  </div>
+  
 
   <script>
     // Set the date to count down to (June 29)
@@ -48,12 +84,12 @@
       const formattedSeconds = seconds.toString().padStart(2, "0");
 
       // Display the countdown
-      document.getElementById("countdown").innerHTML = `<div id="no">Nee!</div> <div>${days}d ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s</div>`;
+      document.getElementById("countdown").innerHTML =  `<div id="no-row"><div id="no" class="value-box">Nee!</div> 😟⛵</div> <div>Nog maar ${days}d ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s!</div>`;
 
       // If the countdown is finished, display a message
       if (distance < 0) {
         clearInterval(countdown);
-        document.getElementById("countdown").innerHTML = `<div id="yes">Ja!!!</div>`;
+        document.getElementById("countdown").innerHTML = `<div id="yes" class="value-box">Ja!!!</div>`;
       }
     }, 1000);
   </script>
