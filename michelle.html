@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countdown to June 29</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-size: 48px;
+      text-align: center;
+    }
+
+    #yes {
+        color: green;
+    }
+
+    #no {
+        color: red;
+    }
+
+  </style>
+</head>
+<body>
+  <div>Is Michelle al weg bij RWS?</div>
+  <div id="countdown"></div>
+
+  <script>
+    // Set the date to count down to (June 29)
+    const countDownDate = new Date("June 29, 2023 17:00:00").getTime();
+
+    // Update the countdown every second
+    const countdown = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      // Calculate days, hours, minutes, and seconds
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Add leading zeros to hours, minutes, and seconds
+      const formattedHours = hours.toString().padStart(2, "0");
+      const formattedMinutes = minutes.toString().padStart(2, "0");
+      const formattedSeconds = seconds.toString().padStart(2, "0");
+
+      // Display the countdown
+      document.getElementById("countdown").innerHTML = `<div id="no">Nee!</div> <div>${days}d ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s</div>`;
+
+      // If the countdown is finished, display a message
+      if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = `<div id="yes">Ja!!!</div>`;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
