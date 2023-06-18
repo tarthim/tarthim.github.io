@@ -215,10 +215,4 @@ const prepLastScreen = () => {
     textDiv.innerHTML = '<div class="head">Tijd om te klimmen naar nieuwe hoogtes!</div><div class="sub">Veel plezier en tot snel in de klimhal!</div>';
     app.appendChild(textDiv);
   }, 500);
-
 }
-
-
-// TODO: Add Michelle her face
-// TODO: Add some finishing text
-// TODO: Seperate RWS and new job
