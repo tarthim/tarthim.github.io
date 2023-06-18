@@ -82,10 +82,10 @@ const initBoulderWall = () => {
   const screenWidth = window.innerWidth;
 
   if (screenWidth < 800) {
-    var boulderCount = 20;
+    var boulderCount = 14;
   }
   else {
-    var boulderCount = 45;
+    var boulderCount = 30;
   }
 
   for (let i = 0; i < boulderCount; i++) {
