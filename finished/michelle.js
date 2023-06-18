@@ -290,7 +290,7 @@ function animateConfetti() {
     createConfetti();
     // Create boulder confetti
     createConfetti(true);
-  }, 100); // Adjust the interval as needed
+  }, 300); // Adjust the interval as needed
 }
 
 // Generate random boulder wall
@@ -299,7 +299,12 @@ initBoulderWall();
 positionFixedItems();
 // Generate moving object and start animation
 const movableObject = new MovableObject();
-movableObject.startAnimation();
+
+// Wait for 2 seconds
+setTimeout(() => {
+  // Start animation
+  movableObject.startAnimation();
+}, 2000); // Adjust the duration as needed
 
 // Called through movable object when it is done moving
 const prepLastScreen = () => {
