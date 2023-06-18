@@ -87,18 +87,7 @@ body {
     transition: left 0.5s ease-in-out, top 0.5s ease-in-out, opacity 0.2s ease-in-out;
     z-index: 200;
     left: 2000px;
-  }
-  
-  @keyframes moveObjectAnimation {
-    /* Add keyframe rules to move the object through each fixed position */
-    0% { left: 0%; top: 0%; }
-    16.67% { left: 35%; top: 10%; }
-    33.33% { left: 20%; top: 30%; }
-    50% { left: 50%; top: 60%; }
-    66.67% { left: 80%; top: 90%; }
-    83.33% { left: 60%; top: 90%; }
-    100% { left: 30%; top: 40%; }
-  }
+}
 
 .replace-animation {
   opacity: 0;

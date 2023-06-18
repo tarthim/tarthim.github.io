@@ -227,7 +227,10 @@ class MovableObject {
 
   startAnimation() {
     this.move();
-    this.animationInterval = setInterval(() => this.move(), 500); // Adjust the interval as needed
+    // Wait for 1 second at the first boulder before continuing
+    setTimeout(() => {
+      this.animationInterval = setInterval(() => this.move(), 500); // Adjust the interval as needed
+    }, 1000);
   }
 
   finishAnimation() {
