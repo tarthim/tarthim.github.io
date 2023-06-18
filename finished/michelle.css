@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap');
+
+body, html {
+    min-width: 100%;
+    min-height: 100%;
+
+    /*hide scrollbars*/
+    overflow: hidden;
+
+    background-color: rgb(135, 170, 236);
+
+    padding: 0;
+    margin: 0;
+
+    font-family: 'Montserrat', sans-serif;
+}
+
+#michelle-app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(135, 170, 236);
+}
+
+#divider-top {
+  width: 100%;
+  height: 60%;
+  position: absolute;
+  background-color: rgb(241, 154, 39);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#divider-bottom {
+  width: 100%;
+  height: 40%;
+  border: 1px solid black;
+  top: 60%;
+  position: absolute;
+  background-color: #154273;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#neo-text {
+  top: 0;
+  color: white;
+  font-size: 2em;
+  z-index: 999;
+}
+
+#rws-text {
+  bottom: 0;
+  color: white;
+  font-size: 2em;
+  z-index: 999;
+}
+
+/* Boulder Wall Styles */
+#boulder-wall {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Adjust the height as needed */
+    background-color: rgb(241, 154, 39); /* Adjust the background color as needed */
+
+    transition: all 0.5s ease-in-out;
+}
+
+#moving-object {
+    position: absolute;
+    width: 100px;
+    transition: left 0.5s ease-in-out, top 0.5s ease-in-out, opacity 0.2s ease-in-out;
+    z-index: 200;
+    left: 2000px;
+  }
+  
+  @keyframes moveObjectAnimation {
+    /* Add keyframe rules to move the object through each fixed position */
+    0% { left: 0%; top: 0%; }
+    16.67% { left: 35%; top: 10%; }
+    33.33% { left: 20%; top: 30%; }
+    50% { left: 50%; top: 60%; }
+    66.67% { left: 80%; top: 90%; }
+    83.33% { left: 60%; top: 90%; }
+    100% { left: 30%; top: 40%; }
+  }
+
+.replace-animation {
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+/* Boulder Styles */
+.boulder {
+position: absolute;
+/* Additional styling for the boulders */
+/* Adjust these styles to achieve the desired appearance */
+background-color: #e5ff00; /* Adjust the background color as needed */
+border-radius: 50%; /* Adjust the border radius for a circular shape */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Add a box shadow for depth */
+opacity: 0.5;
+}
+
+.boulder-fixed {
+    position: absolute;
+    background-color: #000;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.confetti {
+  width: 30px;
+  height: 30px;
+  background-color: #ffd700; /* Yellow color */
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  position: absolute;
+  animation: confetti-fall 5s linear forwards;
+}
+
+@keyframes confetti-fall {
+    0% {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(calc(100vh - 20px));
+      opacity: 1;
+    }
+}
+
+.finish-text {
+  position: absolute;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 5em;
+  text-align: center;
+  color: white;
+  padding: 15px;
+}
+
+.finish-text .sub {
+  font-size: 0.5em;
+}
