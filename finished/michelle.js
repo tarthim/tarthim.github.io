@@ -123,13 +123,6 @@ const initBoulderWall = () => {
 function positionFixedItems() {
   const boulderWall = document.getElementById('boulder-wall');
 
-  // Get width of wall
-  const wallWidth = boulderWall.offsetWidth;
-  const wallHeight = boulderWall.offsetHeight;
-  // Calculate the scaling factor for the boulder
-  const scaleX = wallWidth / boulderWall.offsetWidth;
-  const scaleY = wallHeight / boulderWall.offsetHeight;
-
   fixedPositions.forEach((position) => {
     const boulder = document.createElement('div');
     boulder.className = 'boulder-fixed';
