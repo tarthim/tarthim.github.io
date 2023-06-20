@@ -17,7 +17,6 @@
 
       font-family: 'Montserrat', sans-serif;
       overflow: hidden;
-
     }
 
     #app {
@@ -31,6 +30,10 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+    }
+
+    #countdown div {
+      margin: 6px 0px;
     }
 
     #yes {
@@ -56,21 +59,63 @@
         font-weight: 700;
     }
 
+    .joke-text {
+      font-size: 0.5em;
+    }
+
+    #joke {
+      font-style: italic;
+      font-size: 0.8em;
+    }
+
+    .rws-text {
+      font-weight: bold;
+      color: rgb(21, 66, 115);
+    }
+    
+    .joke-text {
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      min-width: 700px;
+    }
+
   </style>
 </head>
 <body>
   <div id="app">
     <div>Is Michelle al weg bij RWS?</div>
-    <div id="countdown"></div>
+    <div id="countdown">
+      <div id="no">Nee! 😟⛵</div>
+      <div id="time-box" style="display: flex;">
+        <div>Nog maar&nbsp;</div>
+        <div id="time"></div>
+      </div>
+      <div class="joke-text">
+        <div class="rws-text">Rijkswaterstaat&nbsp;</div>
+        <div id="joke">...</div>
+      </div>
+    </div>
   </div>
   
 
   <script>
-    // Set the date to count down to (June 29)
     const countDownDate = new Date("June 29, 2023 17:00:00").getTime();
+    const countdownDiv = document.getElementById("countdown");
+    const timeDiv = document.getElementById("time");
+    const jokeDiv = document.getElementById("joke");
 
-    // Update the countdown every second
-    const countdown = setInterval(function() {
+    const jokes = [
+      'Elke dag een beetje b̶e̶t̶e̶r minder Michelle',
+      'Hopelijk is de koffie in de klimhal beter',
+      'Zullen we daar even een meeting voor inplannen?',
+      'Een backwardsplanning is juist heel Agile, toch?',
+      '*Schreeuwende kinderen in Archeon*',
+      '⛵🌊🏢',
+      'Maar, is er al een Product Owner?',
+      'Even een rondje Ikea doen?'      
+    ]
+
+    const getTime = () => {
       const now = new Date().getTime();
       const distance = countDownDate - now;
 
@@ -85,14 +130,41 @@
       const formattedMinutes = minutes.toString().padStart(2, "0");
       const formattedSeconds = seconds.toString().padStart(2, "0");
 
-      // Display the countdown
-      document.getElementById("countdown").innerHTML =  `<div id="no-row"><div id="no" class="value-box">Nee!</div> 😟⛵</div> <div>Nog maar ${days}d ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s!</div>`;
-
+      if (distance > 0) {
+        return {finished: false, time:`${days}d ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s`};
+      }
+      else {
+        return {finished: true, time:''};
+      }
+      
       // If the countdown is finished, display a message
       if (distance < 0) {
         clearInterval(countdown);
-        document.getElementById("countdown").innerHTML = `<div id="yes" class="value-box">Ja!!!</div>`;
+        countdownDiv.innerHTML = `<div id="yes" class="value-box">Ja!!!</div>`;
       }
+    }
+
+    const updateTime = () => {
+      let time = getTime();
+      if (!time.finished) {
+        // Update countdown element with new time
+        timeDiv.innerHTML = `${time.time}`;
+      } else {
+        countdownDiv.innerHTML = `<div id="yes" class="value-box">Ja!!!</div>`;
+      }
+    }
+
+    const setJoke = () => {
+      // Get random joke from jokes array
+      const joke = jokes[Math.floor(Math.random() * jokes.length)];
+      jokeDiv.innerHTML = joke;
+    }
+    
+    setJoke();
+    updateTime();
+    // Update the countdown every second
+    const countdown = setInterval(function() {
+      updateTime();
     }, 1000);
   </script>
 </body>
