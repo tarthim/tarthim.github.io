@@ -303,11 +303,11 @@ positionFixedItems();
 // Generate moving object and start animation
 const movableObject = new MovableObject();
 
-// Wait for 2 seconds
+// Wait for a bit
 setTimeout(() => {
-  // Start animation
   movableObject.startAnimation();
-}, 2000); // Adjust the duration as needed
+}, 4700);
+
 
 // Called through movable object when it is done moving
 const prepLastScreen = () => {
