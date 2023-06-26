@@ -17,6 +17,9 @@
 
       font-family: 'Montserrat', sans-serif;
       overflow: hidden;
+
+      background: rgb(63, 62, 62);
+      color: white;
     }
 
     #app {
@@ -70,7 +73,7 @@
 
     .rws-text {
       font-weight: bold;
-      color: rgb(21, 66, 115);
+      color: rgb(95, 164, 238);
     }
     
     .joke-text {
@@ -157,7 +160,30 @@
       const joke = jokes[Math.floor(Math.random() * jokes.length)];
       jokeDiv.innerHTML = joke;
     }
+
+    // Get contrasting random front and background colors
+    function generateContrastingColors() {
+      // Generate a random hue value between 0 and 360
+      const hue = Math.floor(Math.random() * 361);
+
+      // Set the saturation and lightness values
+      const saturation = 50;
+      const lightness = 50;
+
+      // Convert HSL to RGB
+      const backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+
+      // Calculate the contrast text color
+      const textColor = hue > 180 ? 'black' : 'white';
+
+      return { backgroundColor, textColor };
+    }
     
+    // Generate contrasting colors and set background and text
+    const colors = generateContrastingColors();
+    document.body.style.backgroundColor = colors.backgroundColor;
+    document.body.style.color = colors.textColor;
+
     setJoke();
     updateTime();
     // Update the countdown every second
