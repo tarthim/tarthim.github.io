@@ -44,7 +44,7 @@
     }
 
     #no {
-        color: red;
+        color: orange;
         text-decoration: underline;
     }
 
@@ -82,54 +82,83 @@
       min-width: 700px;
     }
 
+    .party-box {
+      display: flex;
+    }
+    
+    .flower {
+      margin: 0 15px !important;
+    }
+
     #final-countdown {
       background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      animation: rainbow 3.5s linear infinite;
+      animation: psychedelic 10s linear infinite;
       transition: all 0.3s ease-in-out;
       background-size: 400% 100%;
-      /*Add 10% box shadow*/
       text-shadow: 0px 0px 1px rgb(255, 255, 255);
     }
 
-    @keyframes rainbow {
-      10%, 90% {
+    @keyframes psychedelic {
+      5% {
+        background-position: 0% 0%;
+      }
+      10% {
         background-position: 50% 0%;
       }
       20% {
         background-position: 0% 0%;
         text-shadow: 15px 15px 1px rgb(255, 255, 255);
       }
-      35% {
+      30% {
         background-position: 0% 0%;
-        text-shadow: 2.5px 2.5px 1px rgb(0, 0, 0);
+        text-shadow: 7px 7px 1px rgb(0,0 ,0);
       }
-      45% {
+      40% {
         background-position: 100% 0%;
       }
-      60% {
-        background-position: 50% 0%;
+      50% {
+        background-position: 0% 0%;
         text-shadow: -15px -15px 1px rgb(255, 255, 255);
       }
+      60% {
+        background-position: 0% 0%;
+        text-shadow: unset;
+      }
+      70% {
+        background-position: 50% 0%;
+        text-shadow: unset;
+      }
       80% {
-        background-position: 30% 0%;
-        text-shadow: 0px 0px 1px rgb(0, 0, 0);
+        background-position: 100% 0%;
+      }
+      90% {
+        background-position: 50% 0%;
+      }
+      95% {
+        background-position: 100% 0%;
       }
     }
+
   </style>
 </head>
 <body>
   <div id="app">
     <div>Is Michelle al weg bij RWS?</div>
     <div id="countdown">
-      <div id="no">Nee! 😟⛵</div>
+      <div id="no">Bijna! 😮⛵</div>
       <div id="time-box" style="display: flex;">
         <div>Nog maar&nbsp;</div>
         <div id="time"></div>
       </div>
-      <div id="final-countdown">It's the final countdown...</div>
+      <div class="party-box">
+        <div class="flower">🌷</div>
+        <div id="final-countdown">It's the final countdown...</div>
+        <div class="flower">🌼</div>
+      </div>
+
       <div class="joke-text">
         <div class="rws-text">Rijkswaterstaat&nbsp;</div>
         <div id="joke">...</div>
@@ -155,7 +184,8 @@
       'Professioneel opleidingscentrum',
       'Voldoet deze site eigenlijk wel aan de BIO?',
       'Wil je daar gemberthee bij?',
-      'Zijn er nog nabranders?'
+      'Zijn er nog nabranders?',
+      'Tafelvoetbaltafelloos',
     ]
 
     const getTime = () => {
@@ -200,8 +230,8 @@
 
     // Get contrasting random front and background colors
     function generateContrastingColors() {
-      // Generate a random hue value between 0 and 360
-      const hue = Math.floor(Math.random() * 361);
+      // Generate a random hue value between 240 and 360
+      const hue = Math.floor(Math.random() * 120) + 240;
 
       // Set the saturation and lightness values
       const saturation = 50;
@@ -210,10 +240,26 @@
       // Convert HSL to RGB
       const backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 
-      // Calculate the contrast text color
-      const textColor = hue > 180 ? 'black' : 'white';
+      // Randomly set text to black or white
+      const textColor = Math.random() > 0.5 ? "#000" : "#fff";
 
       return { backgroundColor, textColor };
+    }
+
+    const setIcons = () => {
+      // 10% chance to get icons 🧗🏻‍♀️ and 🧗🏻‍♂️, otherwise icons are 🌷 and 🌼
+      if (Math.random() > 0.8) {
+        const iconDivs = document.getElementsByClassName("flower");
+        iconDivs[0].innerHTML = '🧗🏻‍♀️';
+        iconDivs[1].innerHTML = '🧗🏻‍♂️';
+
+        // flip iconDivs[1] horizontally
+        iconDivs[1].style.transform = "scaleX(-1)";
+      } else {
+        const iconDivs = document.getElementsByClassName("flower");
+        iconDivs[0].innerHTML = '🌷';
+        iconDivs[1].innerHTML = '🌼';
+      }
     }
     
     // Generate contrasting colors and set background and text
@@ -222,6 +268,7 @@
     document.body.style.color = colors.textColor;
 
     setJoke();
+    setIcons();
     updateTime();
     // Update the countdown every second
     const countdown = setInterval(function() {
